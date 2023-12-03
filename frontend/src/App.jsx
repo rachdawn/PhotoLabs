@@ -1,7 +1,6 @@
 import React from "react";
-import TopNavigation from "components/TopNavigationBar";
-import TopicList from "components/TopicList";
-import PhotoList from "./components/PhotoList";
+
+import HomeRoute from "routes/HomeRoute";
 import "./App.scss";
 
 
@@ -11,14 +10,15 @@ const App = () => {
 
   return (
     <div className="App">
-        <TopNavigation/>
-      {/* Map through the array and render PhotoListItem for each element */}
-      {/* const photos = Array.from({ length: 3 });{photos.map((_, id) => ())} */}
-
-        <PhotoList/>
-    
+        <HomeRoute/>
     </div>
   );
 };
 
 export default App;
+
+
+      {/* Map through the array and render PhotoListItem for each element */}
+      {/* const photos = Array.from({ length: 3 });{photos.map((_, id) => ())} */}
+
+    
