@@ -8,10 +8,13 @@ const sampleDataForTopicListItem = {
   label: "Nature",
 };
 
-const TopicListItem = () => {
+const TopicListItem = (props) => {
+  console.log("props:", props);
   return (
     <div className="topic-list__item">
-      {/* Insert React */}
+      <span className="topic-list__item" id={props.id} href={props.slug}>
+        {props.title}
+      </span>
     </div>
   );
 };

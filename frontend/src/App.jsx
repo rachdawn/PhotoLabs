@@ -1,5 +1,6 @@
 import React from "react";
 
+import TopicList from "components/TopicList";
 import PhotoList from "./components/PhotoList";
 import "./App.scss";
 
@@ -10,6 +11,7 @@ const App = () => {
 
   return (
     <div className="App">
+        <TopicList/>
       {/* Map through the array and render PhotoListItem for each element */}
       {/* const photos = Array.from({ length: 3 });{photos.map((_, id) => ())} */}
 
