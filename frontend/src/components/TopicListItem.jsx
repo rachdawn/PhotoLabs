@@ -12,7 +12,7 @@ const TopicListItem = (props) => {
   console.log("props:", props);
   return (
     <div className="topic-list__item">
-      <span className="topic-list__item" id={props.id} href={props.slug}>
+      <span id={props.id} href={props.slug}>
         {props.title}
       </span>
     </div>
