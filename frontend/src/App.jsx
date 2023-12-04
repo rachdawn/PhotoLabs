@@ -1,29 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
-import HomeRoute from "routes/HomeRoute";
 import "./App.scss";
+import HomeRoute from "routes/HomeRoute";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
-
-// Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [isModalView, setModalView] = useState(false);
+  const [clickedPhoto, setClickedPhoto] = useState(null);
+
+  const handleClickedPhoto = (photo) => {
+    setClickedPhoto(photo);
+    setModalView(true);
+  };
+
   const mockData = {
-    topics: {...topics},
-    photos: {...photos}
-  }
+    topics: { ...topics },
+    photos: { ...photos },
+  };
 
   return (
     <div className="App">
-        <HomeRoute {...mockData}/>
+      <HomeRoute {...mockData} onClickedPhoto={handleClickedPhoto} />
+      {isModalView && <PhotoDetailsModal photo={clickedPhoto} />}
     </div>
   );
 };
 
 export default App;
 
-
-      {/* Map through the array and render PhotoListItem for each element */}
-      {/* const photos = Array.from({ length: 3 });{photos.map((_, id) => ())} */}
-
-    
