@@ -15,6 +15,11 @@ const App = () => {
     setModalView(true);
   };
 
+  const handleCloseModal = () => {
+    setClickedPhoto(null);
+    setModalView(false);
+  };
+
   const mockData = {
     topics: { ...topics },
     photos: { ...photos },
@@ -23,7 +28,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute {...mockData} onClickedPhoto={handleClickedPhoto} />
-      {isModalView && <PhotoDetailsModal photo={clickedPhoto} />}
+      {isModalView && <PhotoDetailsModal photo={clickedPhoto} onClose={handleCloseModal}/>}
     </div>
   );
 };
