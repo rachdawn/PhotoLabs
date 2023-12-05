@@ -7,11 +7,11 @@ const TopicList = (props) => {
     return props[property];
   });
   return (
-    <div className="top-nav-bar__topic-list">
+    <span className="top-nav-bar__topic-list" >
       {topicsArray.map((topic) => (
         <TopicListItem key={topic.id} slug={topic.slug} title={topic.title} />
       ))}
-    </div>
+    </span>
   );
 };
 
