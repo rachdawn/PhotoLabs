@@ -6,16 +6,17 @@ import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = (props) => {
-  const { photo, onClose, isFavourite, toggleFavourite, onClickedPhoto } = props;
+  const { photo, onClose, isFavourite, toggleFavourite, onClickedPhoto, likedPhotos } =
+    props;
   const { similar_photos, urls, location, user } = photo;
   const photoData = { photos: similar_photos };
-  console.log('pd:', photoData);
+  console.log("pd:", photoData);
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={onClose}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      <div>
+      <section className="photo-details-modal__images">
         <PhotoFavButton
           key={photo.id}
           isFavourite={isFavourite}
@@ -27,7 +28,6 @@ const PhotoDetailsModal = (props) => {
           src={photo.urls.regular}
           alt="sample modal photo"
         />
-      </div>
       <div className="photo-details-modal__photographer-details">
         <img
           src={photo.user.profile}
@@ -45,9 +45,15 @@ const PhotoDetailsModal = (props) => {
         <h2>Similar Photos</h2>
       </header>
 
-        <div className="photo-details-modal__images">
-          
-        </div>
+      <div >
+        <PhotoList
+          photos={similar_photos}
+          likedPhotos={[]}
+          toggleFavourite={toggleFavourite}
+          onClickedPhoto={onClickedPhoto}
+        />
+      </div>
+      </section>
     </div>
   );
 };
