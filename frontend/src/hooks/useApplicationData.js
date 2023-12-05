@@ -26,11 +26,6 @@ const useApplicationData = () => {
     setModalView(false);
   };
 
-  const mockData = {
-    topics: { ...topics },
-    photos: { ...photos },
-  };
-
   const state = {
     isModalView: isModalView, clickedPhoto: clickedPhoto, likedPhotos: likedPhotos, photos: photos, topics: topics
   };
