@@ -6,10 +6,21 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
+
 const App = () => {
   const [isModalView, setModalView] = useState(false);
   const [clickedPhoto, setClickedPhoto] = useState(null);
+  const [likedPhotos, setLikedPhotos] = useState([]);
 
+  const toggleFavourite = (photoId) => {
+    setLikedPhotos((prevLikedPhotos) => {
+      if (prevLikedPhotos.includes(photoId)) {
+        return prevLikedPhotos.filter((id) => id !== photoId);
+      } else {
+        return [...prevLikedPhotos, photoId];
+      }
+    });
+  };
   const handleClickedPhoto = (photo) => {
     setClickedPhoto(photo);
     setModalView(true);
@@ -27,8 +38,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute {...mockData} onClickedPhoto={handleClickedPhoto} />
-      {isModalView && <PhotoDetailsModal photo={clickedPhoto} onClose={handleCloseModal}/>}
+      <HomeRoute {...mockData} onClickedPhoto={handleClickedPhoto} likedPhotos={likedPhotos} toggleFavourite={toggleFavourite} />
+      {isModalView && <PhotoDetailsModal photo={clickedPhoto} onClose={handleCloseModal} likedPhotos={likedPhotos} toggleFavourite={toggleFavourite}/>}
     </div>
   );
 };
