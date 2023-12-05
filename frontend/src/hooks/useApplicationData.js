@@ -1,5 +1,6 @@
 import { useState } from "react";
 import photos from "mocks/photos";
+import topics from "mocks/topics";
 
 const useApplicationData = () => {
   const [isModalView, setModalView] = useState(false);
@@ -24,9 +25,14 @@ const useApplicationData = () => {
     setClickedPhoto(null);
     setModalView(false);
   };
-  
+
+  const mockData = {
+    topics: { ...topics },
+    photos: { ...photos },
+  };
+
   const state = {
-    isModalView: isModalView, clickedPhoto: clickedPhoto, likedPhotos: likedPhotos
+    isModalView: isModalView, clickedPhoto: clickedPhoto, likedPhotos: likedPhotos, photos: photos, topics: topics
   };
 
   return ({
