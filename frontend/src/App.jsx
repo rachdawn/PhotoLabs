@@ -5,31 +5,11 @@ import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
+import useApplicationData from 'hooks/useApplicationData';
 
 
 const App = () => {
-  const [isModalView, setModalView] = useState(false);
-  const [clickedPhoto, setClickedPhoto] = useState(null);
-  const [likedPhotos, setLikedPhotos] = useState([]);
-
-  const toggleFavourite = (photoId) => {
-    setLikedPhotos((prevLikedPhotos) => {
-      if (prevLikedPhotos.includes(photoId)) {
-        return prevLikedPhotos.filter((id) => id !== photoId);
-      } else {
-        return [...prevLikedPhotos, photoId];
-      }
-    });
-  };
-  const handleClickedPhoto = (photo) => {
-    setClickedPhoto(photo);
-    setModalView(true);
-  };
-
-  const handleCloseModal = () => {
-    setClickedPhoto(null);
-    setModalView(false);
-  };
+  const { state, toggleFavourite, handleClickedPhoto, handleCloseModal } = useApplicationData();
 
   const mockData = {
     topics: { ...topics },
@@ -38,8 +18,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute {...mockData} onClickedPhoto={handleClickedPhoto} likedPhotos={likedPhotos} toggleFavourite={toggleFavourite} />
-      {isModalView && <PhotoDetailsModal photo={clickedPhoto} onClose={handleCloseModal} likedPhotos={likedPhotos} toggleFavourite={toggleFavourite}/>}
+      <HomeRoute {...mockData} onClickedPhoto={handleClickedPhoto} likedPhotos={state.likedPhotos} toggleFavourite={toggleFavourite} />
+      {state.isModalView && <PhotoDetailsModal photo={state.clickedPhoto} onClose={handleCloseModal} likedPhotos={state.likedPhotos} toggleFavourite={toggleFavourite}/>}
     </div>
   );
 };
