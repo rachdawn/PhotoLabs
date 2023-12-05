@@ -6,7 +6,7 @@ import '../styles/FavBadge.scss';
 const FavBadge = (props) => {
   return (
     <div className='fav-badge'>
-      <FavIcon displayAlert={!!props.likedPhotosCount}/>
+      <FavIcon selected={!!props.likedPhotosCount} displayAlert={!!props.likedPhotosCount}/>
     </div>
   ) 
 };
