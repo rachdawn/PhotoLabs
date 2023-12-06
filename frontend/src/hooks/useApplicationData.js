@@ -1,41 +1,68 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
-const useApplicationData = () => {
-  const [isModalView, setModalView] = useState(false);
-  const [clickedPhoto, setClickedPhoto] = useState(null);
-  const [likedPhotos, setLikedPhotos] = useState([]);
+const ACTIONS = {
+    TOGGLE_FAV: 'TOGGLE_FAV',
+    DISPLAY_MODAL: 'DISPLAY_MODAL',
+    CLOSE_MODAL: 'CLOSE_MODAL',
+}
 
-  const toggleFavourite = (photoId) => {
-    setLikedPhotos((prevLikedPhotos) => {
-      if (prevLikedPhotos.includes(photoId)) {
-        return prevLikedPhotos.filter((id) => id !== photoId);
-      } else {
-        return [...prevLikedPhotos, photoId];
-      }
-    });
-  };
-  const handleClickedPhoto = (photo) => {
-    setClickedPhoto(photo);
-    setModalView(true);
-  };
-
-  const handleCloseModal = () => {
-    setClickedPhoto(null);
-    setModalView(false);
-  };
-
-  const state = {
-    isModalView: isModalView, clickedPhoto: clickedPhoto, likedPhotos: likedPhotos, photos: photos, topics: topics
-  };
-
-  return ({
-    state,
-    toggleFavourite,
-    handleClickedPhoto,
-    handleCloseModal
-  });
+function reducer(state, action) {
+    switch (action.type) {
+      case ACTIONS.TOGGLE_FAV:
+        return {
+            ...state,
+            likedPhotos: state.likedPhotos.includes(action.payload)
+              ? state.likedPhotos.filter((id) => id !== action.payload)
+              : [...state.likedPhotos, action.payload],
+          };
+      case ACTIONS.DISPLAY_MODAL:
+        return {
+            ...state,
+            clickedPhoto: action.payload,
+            isModalView: action.payload
+        };
+      case ACTIONS.CLOSE_MODAL:
+        return {
+            ...state,
+            clickedPhoto: action.payload,
+            isModalView: action.payload
+        };
+      default:
+        throw new Error(
+          `Tried to reduce with unsupported action type: ${action.type}`
+        );
+    }
 };
+
+const useApplicationData = () => {
+    const [state, dispatch] = useReducer(reducer, {
+      isModalView: false,
+      clickedPhoto: null,
+      likedPhotos: [],
+      photos: photos,
+      topics: topics,
+    });
+  
+    const toggleFavourite = (photoId) => {
+      dispatch({ type: ACTIONS.TOGGLE_FAV, payload: photoId });
+    };
+  
+    const handleClickedPhoto = (photo) => {
+      dispatch({ type: ACTIONS.DISPLAY_MODAL, payload: photo });
+    };
+  
+    const handleCloseModal = () => {
+      dispatch({ type: ACTIONS.CLOSE_MODAL });
+    };
+  
+    return {
+      state,
+      toggleFavourite,
+      handleClickedPhoto,
+      handleCloseModal,
+    };
+  };
 
 export default useApplicationData;
