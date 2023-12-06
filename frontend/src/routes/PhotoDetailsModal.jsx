@@ -1,5 +1,4 @@
 import React from "react";
-
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoFavButton from "components/PhotoFavButton";
@@ -9,14 +8,12 @@ const PhotoDetailsModal = (props) => {
   const {
     photo,
     onClose,
-    isFavourite,
     toggleFavourite,
     onClickedPhoto,
     likedPhotos,
   } = props;
-  const { similar_photos, id, urls, location, user } = photo;
-  const photoData = { photos: similar_photos };
-  console.log("pd:", photoData);
+  const { id, urls, location, user } = photo;
+
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={onClose}>
