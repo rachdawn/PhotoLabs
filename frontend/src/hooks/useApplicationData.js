@@ -1,12 +1,13 @@
-import { useReducer } from "react";
-import photos from "mocks/photos";
-import topics from "mocks/topics";
+import { useReducer, useEffect } from "react";
+import axios from "axios";
 
 const ACTIONS = {
     TOGGLE_FAV: 'TOGGLE_FAV',
     DISPLAY_MODAL: 'DISPLAY_MODAL',
     CLOSE_MODAL: 'CLOSE_MODAL',
-}
+    SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+    SET_TOPIC_DATA: 'SET_TOPIC_DATA'
+};
 
 function reducer(state, action) {
     switch (action.type) {
@@ -29,6 +30,16 @@ function reducer(state, action) {
             clickedPhoto: action.payload,
             isModalView: action.payload
         };
+      case ACTIONS.SET_PHOTO_DATA:
+        return {
+            ...state,
+            photos: action.payload
+        };
+      case ACTIONS.SET_TOPIC_DATA:
+        return {
+            ...state,
+            topics: action.payload
+        };
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`
@@ -41,8 +52,8 @@ const useApplicationData = () => {
       isModalView: false,
       clickedPhoto: null,
       likedPhotos: [],
-      photos: photos,
-      topics: topics,
+      photos: [],
+      topics: [],
     });
   
     const toggleFavourite = (photoId) => {
@@ -56,6 +67,26 @@ const useApplicationData = () => {
     const handleCloseModal = () => {
       dispatch({ type: ACTIONS.CLOSE_MODAL });
     };
+
+    useEffect(() => {
+      axios.get("/api/photos")
+        .then((res) => {
+          dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res.data });
+        })
+        .catch((err) => {
+          console.err("Error fetching data:", err);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get("/api/topics")
+          .then((res) => {
+            dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: res.data });
+          })
+          .catch((err) => {
+            console.err("Error fetching data:", err);
+          });
+      }, []);
   
     return {
       state,
