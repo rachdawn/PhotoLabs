@@ -21,9 +21,8 @@ const PhotoDetailsModal = (props) => {
       </button>
       <section className="photo-details-modal__images">
         <PhotoFavButton
-          key={id}
           isFavourite={likedPhotos.includes(photo.id)}
-          toggleFavourite={toggleFavourite}
+          toggleFavourite={() => toggleFavourite(photo.id)}
           onClickedPhoto={() => onClickedPhoto(id)}
           likedPhotos={likedPhotos}
         />
