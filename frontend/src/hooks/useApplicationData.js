@@ -70,25 +70,27 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLOSE_MODAL });
   };
 
+  const getPhotoByTopic = (topicID) => {
+    axios.get(`/api/topics/photos/${topicID}`)
+      .then((res) => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res.data })
+      })
+  };
+
   useEffect(() => {
-    axios
-      .get("/api/photos")
+    axios.get("/api/photos")
       .then((res) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res.data });
       })
-      .catch((err) => {
-        console.err("Error fetching data:", err);
-      });
   }, []);
 
   useEffect(() => {
-    axios
-      .get("/api/topics")
+    axios.get("/api/topics")
       .then((res) => {
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: res.data });
       })
       .catch((err) => {
-        console.err("Error fetching data:", err);
+        console.error("Error fetching data:", err);
       });
   }, []);
 
@@ -97,6 +99,7 @@ const useApplicationData = () => {
     toggleFavourite,
     handleClickedPhoto,
     handleCloseModal,
+    getPhotoByTopic,
   };
 };
 
