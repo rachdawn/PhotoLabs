@@ -75,13 +75,29 @@ const useApplicationData = () => {
       .then((res) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res.data })
       })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
   };
+
+  const logoHome = () => {
+    axios.get("/api/photos")
+    .then((res) => {
+      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res.data });
+    })
+    .catch((err) => {
+      console.error("Error fetching data:", err);
+    });
+  }
 
   useEffect(() => {
     axios.get("/api/photos")
       .then((res) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res.data });
       })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
   }, []);
 
   useEffect(() => {
@@ -100,6 +116,7 @@ const useApplicationData = () => {
     handleClickedPhoto,
     handleCloseModal,
     getPhotoByTopic,
+    logoHome,
   };
 };
 

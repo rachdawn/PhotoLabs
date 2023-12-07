@@ -5,7 +5,7 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "hooks/useApplicationData";
 
 const App = () => {
-  const { state, toggleFavourite, handleClickedPhoto, handleCloseModal, getPhotoByTopic } =
+  const { state, toggleFavourite, handleClickedPhoto, handleCloseModal, getPhotoByTopic, logoHome } =
     useApplicationData();
 
   return (
@@ -17,6 +17,7 @@ const App = () => {
         likedPhotos={state.likedPhotos}
         toggleFavourite={toggleFavourite}
         getPhotoByTopic={getPhotoByTopic}
+        logoHome={logoHome}
       />
       {state.isModalView && (
         <PhotoDetailsModal
