@@ -4,14 +4,7 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from "components/PhotoList";
 
-const PhotoDetailsModal = (props) => {
-  const {
-    photo,
-    onClose,
-    toggleFavourite,
-    onClickedPhoto,
-    likedPhotos,
-  } = props;
+const PhotoDetailsModal = ({ photo, onClose, toggleFavourite, onClickedPhoto, likedPhotos }) => {
   const { id, urls, location, user } = photo;
 
   return (
@@ -54,7 +47,6 @@ const PhotoDetailsModal = (props) => {
             photos={Object.values(photo.similar_photos)}
             likedPhotos={likedPhotos}
             toggleFavourite={toggleFavourite}
-            onClickedPhoto={onClickedPhoto}
           />
         </div>
       </section>

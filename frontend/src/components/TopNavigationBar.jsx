@@ -7,7 +7,7 @@ import "../styles/TopNavigationBar.scss";
 const TopNavigation = (props) => {
   return (
     <div className="top-nav-bar">
-      <button onClick={() => props.logoHome()} >
+      <button onClick={() => props.logoHome()}>
         <span className="top-nav-bar__logo">PhotoLabs</span>
       </button>
       <TopicList {...props} />

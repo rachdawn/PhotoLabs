@@ -2,8 +2,12 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = (props) => {
-  const { photo, isFavourite, toggleFavourite, onClickedPhoto } = props;
+const PhotoListItem = ({
+  photo,
+  isFavourite,
+  toggleFavourite,
+  onClickedPhoto,
+}) => {
   return (
     <li key={photo.id} className="photo-list__item">
       <PhotoFavButton
