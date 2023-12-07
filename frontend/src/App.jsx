@@ -5,20 +5,18 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "hooks/useApplicationData";
 
 const App = () => {
-  const { state, toggleFavourite, handleClickedPhoto, handleCloseModal } =
+  const { state, toggleFavourite, handleClickedPhoto, handleCloseModal, getPhotoByTopic } =
     useApplicationData();
 
-  const mockData = {
-    topics: { ...state.topics },
-    photos: { ...state.photos },
-  };
   return (
     <div className="App">
       <HomeRoute
-        {...mockData}
+        topics={state.topics}
+        photos={state.photos}
         onClickedPhoto={handleClickedPhoto}
         likedPhotos={state.likedPhotos}
         toggleFavourite={toggleFavourite}
+        getPhotoByTopic={getPhotoByTopic}
       />
       {state.isModalView && (
         <PhotoDetailsModal
