@@ -1,5 +1,6 @@
 # Photolabs
 A single-page application (SPA) that allows users to view photos in different contexts.
+
 Tech Stack: PSQL, Express, React, Node.js, Axios
 
 A Lighthouse Labs project by Rachel Little
