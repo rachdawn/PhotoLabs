@@ -1,11 +1,10 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
-
 # Photolabs
-LHL project by Rachel Little
+A single-page application (SPA) that allows users to view photos in different contexts.
+Tech Stack: PSQL, Express, React, Node.js, Axios
 
-!['Home Route'](https://github.com/rachdawn/photolabs-starter/blob/main/docs/HomeRoute.png?raw=true)
-!['Likes Photos'](https://github.com/rachdawn/photolabs-starter/blob/main/docs/LikedPhotos.png?raw=true)
+A Lighthouse Labs project by Rachel Little
+
+!['Home Route'](https://github.com/rachdawn/PhotoLabs/blob/main/docs/PhotoLabsLP.png?raw=true)
 !['Open Modal View'](https://github.com/rachdawn/photolabs-starter/blob/main/docs/ModalOpenView.png?raw=true)
 !['Close-up Modal View'](https://github.com/rachdawn/photolabs-starter/blob/main/docs/ModalCloseUp.png?raw=true)
 
